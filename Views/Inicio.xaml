@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E2Grupo2.Views.Inicio">
+
+
+    <VerticalStackLayout>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Image Source="uth.png" BackgroundColor="#00000000" HeightRequest="100" WidthRequest="100" HorizontalOptions="CenterAndExpand" Grid.Row="1"/>
+
+        <Label Text="Sitio Visitado" FontSize="25" Grid.Row="1" Grid.Column="1" FontAttributes="Bold" TranslationY="10" HorizontalOptions="StartAndExpand"/>
+
+    </Grid>
+
+        <Image  x:Name="foto" BackgroundColor="AliceBlue" HeightRequest="200" WidthRequest="200" HorizontalOptions="CenterAndExpand"
+        VerticalOptions="CenterAndExpand" Source="camera.jpg"/>
+        
+        <Button x:Name="btnFoto" Text="Tomar Foto" Clicked="btnFoto_Clicked"  TranslationY="12.5"/>
+
+        <Entry  x:Name="Latitud" Placeholder="Ingrese una Latitud" Keyboard="Numeric" FontSize="15"  TranslationX="2" TranslationY="25" IsEnabled="False" IsReadOnly="True"/>
+
+        <Entry  x:Name="Longitud" Placeholder="Ingrese una Longitud" Keyboard="Numeric" FontSize="15" TranslationX="2" TranslationY="25" IsEnabled="False" IsReadOnly="True"/>
+
+        <Entry  x:Name="Descripcion" Placeholder="Ingrese una Descripcion" Keyboard="Text" FontSize="15" TranslationX="2" TranslationY="25"/>
+
+
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition />
+                <RowDefinition Height="20" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="btnAgregar" Text="Agregar" Clicked="btnAgregar_Clicked" Grid.Row="1"  WidthRequest="170"  TranslationY="30"/>
+
+            <Button x:Name="btnSitios" Text="Lista Sitios" Clicked="btnSitios_Clicked" Grid.Row="1" Grid.Column="1" WidthRequest="170"  TranslationY="30"/>
+     
+        </Grid>
+
+        <Button x:Name="btnSalir" Text="Salir App" Clicked="btnSalir_Clicked" TranslationY="50"/>
+
+    </VerticalStackLayout>
+</ContentPage>

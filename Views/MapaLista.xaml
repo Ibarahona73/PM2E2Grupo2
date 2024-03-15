@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PM2E2Grupo2.Views.MapaLista"
+             xmlns:conver="clr-namespace:PM2E2Grupo2.Controllers"
+             Title="Sitios Guardados">
+
+    <ContentPage.Resources>
+        <conver:Base64Image x:Key="BaseArray"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="ubicaciones"
+                            SelectionMode="Single"
+                            SelectionChanged="ubicaciones_SelectionChanged">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                    ItemSpacing="20">
+                    </LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Image x:Name="foto"
+                            WidthRequest="100"
+                            HeightRequest="100"
+                            Aspect="AspectFill"
+                            HorizontalOptions="CenterAndExpand"   
+                            TranslationY="15"
+                            Source="{Binding foto , Converter = {StaticResource BaseArray}}"/>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                       <!-- <Span Text="{Binding Latitud}" TextColor="#00000000"/-->
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <!-- <Span Text="{Binding Longitud}" TextColor="#00000000"/-->
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Descripcion: " FontSize="15" />
+                                        <Span Text="{Binding Desc}" />
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnActua" Text="Actualizar Sitio"  Grid.Row="0" Clicked="btnActua_Clicked" WidthRequest="170"  HeightRequest="50" TranslationY="45"/>
+                <Button x:Name="btnBorrar" Text="Borrar Sitio" Clicked="btnBorrar_Clicked"  Grid.Row="0" Grid.Column="1" WidthRequest="170"  HeightRequest="50" TranslationY="45"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
