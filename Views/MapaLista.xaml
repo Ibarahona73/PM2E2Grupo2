@@ -23,45 +23,29 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Image x:Name="foto"
-                            WidthRequest="100"
-                            HeightRequest="100"
-                            Aspect="AspectFill"
-                            HorizontalOptions="CenterAndExpand"   
-                            TranslationY="15"
-                            Source="{Binding foto , Converter = {StaticResource BaseArray}}"/>
+                        <Frame BackgroundColor="#E8E8E8" Padding="10" CornerRadius="10">
+                            <StackLayout>
+                                <Image x:Name="foto"
+                                WidthRequest="100"
+                                HeightRequest="100"
+                                Aspect="AspectFill"
+                                HorizontalOptions="CenterAndExpand"   
+                                TranslationY="15"
+                                Source="{Binding foto , Converter = {StaticResource BaseArray}}"/>
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                       <!-- <Span Text="{Binding Latitud}" TextColor="#00000000"/-->
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                                <Label Text="{Binding latitud, StringFormat='Latitud: {0}'}" FontSize="Small" />
+                                <Label Text="{Binding longitud, StringFormat='Longitud: {0}'}" FontSize="Small" />
 
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <!-- <Span Text="{Binding Longitud}" TextColor="#00000000"/-->
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-
-                            <Label>
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="Descripcion: " FontSize="15" />
-                                        <Span Text="{Binding Desc}" />
-                                    </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
-                        </StackLayout>
+                                <Label Text="Descripción:" FontSize="Medium" />
+                                <Label Text="{Binding Desc}" FontSize="Small" />
+                                <Label Text="{Binding id}" FontSize="Small"/>
+                            </StackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <Grid>
+            <Grid Margin="10,20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
@@ -71,8 +55,8 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Name="btnActua" Text="Actualizar Sitio"  Grid.Row="0" Clicked="btnActua_Clicked" WidthRequest="170"  HeightRequest="50" TranslationY="45"/>
-                <Button x:Name="btnBorrar" Text="Borrar Sitio" Clicked="btnBorrar_Clicked"  Grid.Row="0" Grid.Column="1" WidthRequest="170"  HeightRequest="50" TranslationY="45"/>
+                <Button x:Name="btnActua" Text="Actualizar Sitio"  Grid.Row="0" Clicked="btnActua_Clicked" WidthRequest="170"  HeightRequest="50" TranslationY="20"/>
+                <Button x:Name="btnBorrar" Text="Borrar Sitio" Clicked="btnBorrar_Clicked"  Grid.Row="0" Grid.Column="1" WidthRequest="170"  HeightRequest="50" TranslationY="20"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

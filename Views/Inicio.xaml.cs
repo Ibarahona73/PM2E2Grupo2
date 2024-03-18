@@ -1,11 +1,10 @@
 namespace PM2E2Grupo2.Views;
-using PM2E2Grupo2.Controllers;
+using PM2E2Grupo2.servicios;
 
 public partial class Inicio : ContentPage
 
 {
-    SitiosController sitiosController = new SitiosController();
-    string audioFilePath;
+    
     FileResult photo;
     public Inicio()
     {
@@ -96,74 +95,60 @@ public partial class Inicio : ContentPage
 
     private async void btnAgregar_Clicked(object sender, EventArgs e)
     {
-
-        /* // Verificar si se ha tomado la foto y si todos los campos obligatorios están completos
-         if (photo == null ||
-             string.IsNullOrWhiteSpace(Latitud.Text) ||
-             string.IsNullOrWhiteSpace(Longitud.Text)) 
-             //string.IsNullOrWhiteSpace(Descripcion.Text))
-         {
-             // Mostrar alerta si algún campo obligatorio está vacío o si no se ha tomado la foto
-             await DisplayAlert("Error", "Por favor, complete todos los campos y tome una foto.", "Aceptar");
-             return;
-         }
-
-
-
-         if (double.TryParse(Latitud.Text, out double latitud) && double.TryParse(Longitud.Text, out double longitud))
-         {
-             var lugar = new Models.Sitios
-             {
-                 Latitud = latitud,
-                 Longitud = longitud,
-                 Desc = Descripcion.Text,
-                 foto = GetImage64()
-             };
-
-             if (await App.Database.StoreSitios(lugar) > 0)
-             {
-                 await DisplayAlert("Aviso", "Registro ingresado con éxito!!", "OK");
-             }
-         }
-         else
-         {
-             // Manejo de error si la entrada de Latitud o Longitud no es un número válido
-             await DisplayAlert("Error", "La Latitud y la Longitud deben ser valores numéricos.", "OK");
-         } */
-
-        if (photo == null ||
+        try
+        {
+            if (photo == null ||
                 string.IsNullOrWhiteSpace(Latitud.Text) ||
                 string.IsNullOrWhiteSpace(Longitud.Text))
-        {
-            await DisplayAlert("Error", "Por favor, complete todos los campos y tome una foto.", "Aceptar");
-            return;
-        }
-
-        if (double.TryParse(Latitud.Text, out double lat) && double.TryParse(Longitud.Text, out double Long))
-        {
-            var lugar = new Models.Sitios
             {
-                latitud = lat,
-                longitud = Long,
-                desc = Descripcion.Text,
-                foto = GetImage64()
-            };
+                await DisplayAlert("Error", "Por favor, complete todos los campos y tome una foto.", "Aceptar");
+                return;
+            }
 
-            if (await sitiosController.StoreSitios(lugar) > 0)
+            if (double.TryParse(Latitud.Text, out double lat) && double.TryParse(Longitud.Text, out double Long))
             {
-                await DisplayAlert("Aviso", "Registro ingresado con éxito!!", "OK");
+                var lugar = new Models.Sitios
+                {
+                    
+                    latitud = lat,
+                    longitud = Long,
+                    desc = Descripcion.Text,
+                    foto = GetImage64(),
+                    audio = null // No se incluye el audio en este ejemplo
+                };
+
+                // Instanciar el servicio de la API
+                var sitiosService = new sitesServices();
+
+                // Llamar al método para agregar el sitio
+                if (await sitiosService.AgregarSitio(lugar))
+                {
+                    await DisplayAlert("Aviso", "Registro ingresado con éxito!!", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Error al agregar el sitio.", "OK");
+                }
+            }
+            else
+            {
+                await DisplayAlert("Error", "La Latitud y la Longitud deben ser valores numéricos.", "OK");
             }
         }
-        else
+        catch (Exception ex)
         {
-            await DisplayAlert("Error", "La Latitud y la Longitud deben ser valores numéricos.", "OK");
+            await DisplayAlert("Error", $"Se produjo un error al agregar el sitio: {ex.Message}", "OK");
         }
     }
 
-    private async void btnSitios_Clicked(object sender, EventArgs e)
+    private void btnSitios_Clicked(object sender, EventArgs e)
     {
         var Sitios = new MapaLista();
-        await Navigation.PushAsync(Sitios);
+        Navigation.PushAsync(Sitios);
+
+
+
+
 
     }
 
