@@ -52,7 +52,7 @@ public partial class MapaLista : ContentPage
             }
             else
             {
-                // Manejar el caso donde el servicio no devuelve datos
+                // Manejar el caso donde el servicio no devuelva datos
                 Console.WriteLine("El servicio no devolvió datos");
             }
         }

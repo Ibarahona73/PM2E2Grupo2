@@ -23,7 +23,7 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame BackgroundColor="#E8E8E8" Padding="10" CornerRadius="10">
+                        <Frame BackgroundColor="#94bbe9" Padding="10" CornerRadius="10">
                             <StackLayout>
                                 <Image x:Name="foto"
                                 WidthRequest="100"
@@ -33,12 +33,12 @@
                                 TranslationY="15"
                                 Source="{Binding foto , Converter = {StaticResource BaseArray}}"/>
 
-                                <Label Text="{Binding latitud, StringFormat='Latitud: {0}'}" FontSize="Small" />
-                                <Label Text="{Binding longitud, StringFormat='Longitud: {0}'}" FontSize="Small" />
+                                <Label Text="{Binding latitud}" FontSize="Small" />
+                                <Label Text="{Binding longitud}" FontSize="Small" />
 
                                 <Label Text="Descripción:" FontSize="Medium" />
-                                <Label Text="{Binding Desc}" FontSize="Small" />
-                                <Label Text="{Binding id}" FontSize="Small"/>
+                                <Label Text="{Binding desc}" FontSize="Small" />
+                                <Label Text="{Binding id, StringFormat='ID: {0}'}" FontSize="Small" />
                             </StackLayout>
                         </Frame>
                     </DataTemplate>

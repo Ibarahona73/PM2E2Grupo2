@@ -13,17 +13,37 @@ namespace PM2E2Grupo2.servicios
         private string uriApi = "http://18.118.217.193:8000/api/SitioEx";
 
         public async Task<List<Sitios>> Obtener()
-        {            
+         {
+            try
+            {
+                using var client = new HttpClient();
+                var response = await client.GetAsync(uriApi);
 
-            var client = new HttpClient();
-            var response = await client.GetAsync(uriApi);
-            var responseBody = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Error al obtener datos: {response.StatusCode}");
+                    return null;
+                }
 
-            // Deserializar la respuesta JSON en una lista de objetos Sitio
-            List<Sitios> sitios = JsonSerializer.Deserialize<List<Sitios>>(responseBody);
+                var responseBody = await response.Content.ReadAsStringAsync();
 
-            return sitios;
+                // Deserializar la respuesta en una lista de sitios
+                var sitios = JsonSerializer.Deserialize<List<Sitios>>(responseBody);
+
+                return sitios;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"Error al obtener datos: {ex.Message}");
+                return null;
+            }
+            catch (JsonException ex)
+            {
+                Console.WriteLine($"Error al deserializar JSON: {ex.Message}");
+                return null;
+            }
         }
+
 
         public async Task<bool> AgregarSitio(Sitios sitio)
         {
