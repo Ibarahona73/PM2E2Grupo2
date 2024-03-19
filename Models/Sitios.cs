@@ -24,5 +24,7 @@ namespace PM2E2Grupo2.Models
         [JsonPropertyName("foto")]
         public string foto { get; set; }
 
+
+
     }
 }

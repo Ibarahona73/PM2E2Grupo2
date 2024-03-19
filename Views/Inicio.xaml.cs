@@ -97,7 +97,7 @@ public partial class Inicio : ContentPage
     {
         try
         {
-            if (photo == null ||
+            if (
                 string.IsNullOrWhiteSpace(Latitud.Text) ||
                 string.IsNullOrWhiteSpace(Longitud.Text))
             {
@@ -142,8 +142,8 @@ public partial class Inicio : ContentPage
 
     private void btnSitios_Clicked(object sender, EventArgs e)
     {
-        var Sitios = new MapaLista();
-        Navigation.PushAsync(Sitios);
+        var Sitios = new Views.MapaLista();
+        Navigation.PushModalAsync(Sitios);
 
     }
 
