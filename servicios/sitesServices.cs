@@ -10,14 +10,17 @@ namespace PM2E2Grupo2.servicios
 {
     public class sitesServices : siteService
     {
-        private string uriApi = "http://18.118.217.193:8000/api/SitioEx";
+        private string uriApiG = "https://3ccf-181-115-61-29.ngrok-free.app/api/SitioG";
+        private string uriApiP = "https://3ccf-181-115-61-29.ngrok-free.app/api/SitioP";
+        private string uriApiU = "https://3ccf-181-115-61-29.ngrok-free.app/api/SitioD";
+        private string uriApiD = "https://3ccf-181-115-61-29.ngrok-free.app/api/SitioD";
 
         public async Task<List<Sitios>> Obtener()
          {
             try
             {
                 using var client = new HttpClient();
-                var response = await client.GetAsync(uriApi);
+                var response = await client.GetAsync(uriApiG);
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -52,10 +55,10 @@ namespace PM2E2Grupo2.servicios
             {
                 using (var client = new HttpClient())
                 {
-                    client.Timeout = TimeSpan.FromSeconds(300);
+                    //client.Timeout = TimeSpan.FromSeconds(300);
                     var json = JsonSerializer.Serialize(sitio);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var response = await client.PostAsync(uriApi, content);
+                    var response = await client.PostAsync(uriApiP, content);
 
                     return response.IsSuccessStatusCode;
                 }
@@ -64,7 +67,7 @@ namespace PM2E2Grupo2.servicios
             {
                 Console.WriteLine($"Error al agregar el sitio: {ex.Message}");
                 return false;
-            }
+            }           
         }
 
 
@@ -76,7 +79,7 @@ namespace PM2E2Grupo2.servicios
                 {
                     var json = JsonSerializer.Serialize(sitio);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-                    var url = $"{uriApi}/{id}";
+                    var url = $"{uriApiU}/{id}";
                     var response = await client.PutAsync(url, content);
 
                     return response.IsSuccessStatusCode;
@@ -95,7 +98,7 @@ namespace PM2E2Grupo2.servicios
             {
                 using (var client = new HttpClient())
                 {
-                    var url = $"{uriApi}/{id}";
+                    var url = $"{uriApiD}/{id}";
                     var response = await client.DeleteAsync(url);
 
                     return response.IsSuccessStatusCode;

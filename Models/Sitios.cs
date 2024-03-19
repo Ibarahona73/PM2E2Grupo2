@@ -9,23 +9,20 @@ namespace PM2E2Grupo2.Models
 {
     public class Sitios
     {
-        [JsonPropertyName("Id")]
+        [JsonPropertyName("id")]
         public int id { get; set; }
 
-        [JsonPropertyName("Latitud")]
+        [JsonPropertyName("latitud")]
         public double latitud { get; set; }
 
-        [JsonPropertyName("Longitud")]
+        [JsonPropertyName("longitud")]
         public double longitud { get; set; }
 
-        [JsonPropertyName("Desc")]
+        [JsonPropertyName("desc")]
         public string desc{ get; set; }
 
-        [JsonPropertyName("Foto")]
+        [JsonPropertyName("foto")]
         public string foto { get; set; }
-
-        [JsonPropertyName("Audio")]
-        public string audio { get; set; }
 
     }
 }

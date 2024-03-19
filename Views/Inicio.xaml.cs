@@ -113,8 +113,7 @@ public partial class Inicio : ContentPage
                     latitud = lat,
                     longitud = Long,
                     desc = Descripcion.Text,
-                    foto = GetImage64(),
-                    audio = null // No se pudo jacer 
+                    foto = GetImage64(),                    
                 };
 
                 // Instancio para llamar a la Api
@@ -145,10 +144,6 @@ public partial class Inicio : ContentPage
     {
         var Sitios = new MapaLista();
         Navigation.PushAsync(Sitios);
-
-
-
-
 
     }
 

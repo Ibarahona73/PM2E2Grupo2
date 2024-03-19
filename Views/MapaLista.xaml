@@ -26,8 +26,8 @@
                         <Frame BackgroundColor="#94bbe9" Padding="10" CornerRadius="10">
                             <StackLayout>
                                 <Image x:Name="foto"
-                                WidthRequest="100"
-                                HeightRequest="100"
+                                WidthRequest="25"
+                                HeightRequest="25"
                                 Aspect="AspectFill"
                                 HorizontalOptions="CenterAndExpand"   
                                 TranslationY="15"
