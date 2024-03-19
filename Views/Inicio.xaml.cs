@@ -114,10 +114,10 @@ public partial class Inicio : ContentPage
                     longitud = Long,
                     desc = Descripcion.Text,
                     foto = GetImage64(),
-                    audio = null // No se incluye el audio en este ejemplo
+                    audio = null // No se pudo jacer 
                 };
 
-                // Instanciar el servicio de la API
+                // Instancio para llamar a la Api
                 var sitiosService = new sitesServices();
 
                 // Llamar al método para agregar el sitio

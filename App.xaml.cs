@@ -21,7 +21,7 @@
         {
             InitializeComponent();
 
-            MainPage = new Views.MapaLista();
+            MainPage = new Views.Inicio();
         }
     }
 }

@@ -47,39 +47,43 @@ namespace PM2E2Grupo2.servicios
 
         public async Task<bool> AgregarSitio(Sitios sitio)
         {
+
             try
             {
-                var client = new HttpClient();
-                client.Timeout = TimeSpan.FromSeconds(300);
-                var json = JsonSerializer.Serialize(sitio);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(uriApi, content);
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromSeconds(300);
+                    var json = JsonSerializer.Serialize(sitio);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var response = await client.PostAsync(uriApi, content);
 
-                return response.IsSuccessStatusCode;
+                    return response.IsSuccessStatusCode;
+                }
             }
             catch (Exception ex)
             {
-                
                 Console.WriteLine($"Error al agregar el sitio: {ex.Message}");
                 return false;
             }
         }
 
+
         public async Task<bool> ActualizarSitio(int id, Sitios sitio)
         {
             try
             {
-                var client = new HttpClient();
-                var json = JsonSerializer.Serialize(sitio);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var url = $"{uriApi}/{id}";
-                var response = await client.PutAsync(url, content);
+                using (var client = new HttpClient())
+                {
+                    var json = JsonSerializer.Serialize(sitio);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+                    var url = $"{uriApi}/{id}";
+                    var response = await client.PutAsync(url, content);
 
-                return response.IsSuccessStatusCode;
+                    return response.IsSuccessStatusCode;
+                }
             }
             catch (Exception ex)
             {
-                
                 Console.WriteLine($"Error al actualizar el sitio: {ex.Message}");
                 return false;
             }
@@ -89,15 +93,16 @@ namespace PM2E2Grupo2.servicios
         {
             try
             {
-                var client = new HttpClient();
-                var url = $"{uriApi}/{id}";
-                var response = await client.DeleteAsync(url);
+                using (var client = new HttpClient())
+                {
+                    var url = $"{uriApi}/{id}";
+                    var response = await client.DeleteAsync(url);
 
-                return response.IsSuccessStatusCode;
+                    return response.IsSuccessStatusCode;
+                }
             }
             catch (Exception ex)
             {
-               
                 Console.WriteLine($"Error al eliminar el sitio: {ex.Message}");
                 return false;
             }
